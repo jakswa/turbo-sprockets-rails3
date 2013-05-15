@@ -46,9 +46,14 @@ module Sprockets
             end
 
             # Find all hashes in the asset body with a leading '-'
-            asset_body.gsub!(DIGEST_REGEX) do |match|
-              # Only remove if known digest
-              $1.in?(@asset_digests.values) ? '' : match
+            begin
+              asset_body.gsub!(DIGEST_REGEX) do |match|
+                # Only remove if known digest
+                $1.in?(@asset_digests.values) ? '' : match
+              end
+            rescue Encoding::InvalidByteSequenceError
+              puts "::ERROR:: trying to remove hashes for #{abs_digest_path}" 
+              raise
             end
 
             # Write non-digest file

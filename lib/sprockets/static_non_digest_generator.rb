@@ -52,7 +52,7 @@ module Sprockets
                 $1.in?(@asset_digests.values) ? '' : match
               end
             rescue
-              puts "::ERROR:: trying to remove hashes for #{abs_digest_path}" 
+              puts "::ERROR:: trying to remove hashes for #{abs_digest_path} (#{asset_body.encoding})" 
               raise
             end
 

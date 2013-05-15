@@ -51,7 +51,7 @@ module Sprockets
                 # Only remove if known digest
                 $1.in?(@asset_digests.values) ? '' : match
               end
-            rescue Encoding::InvalidByteSequenceError
+            rescue
               puts "::ERROR:: trying to remove hashes for #{abs_digest_path}" 
               raise
             end

@@ -42,7 +42,7 @@ module Sprockets
           if abs_digest_path.match(/\.(?:js|css)$/)
             asset_body = File.read(abs_digest_path)
             if RUBY_VERSION.to_f >= 1.9
-              asset_body = asset_body.encode('UTF-8', 'binary', :invalid => :replace, :undef => :replace, :replace => '')
+              asset_body = asset_body.encode('UTF-8', :invalid => :replace, :undef => :replace, :replace => '')
             end
 
             # Find all hashes in the asset body with a leading '-'
